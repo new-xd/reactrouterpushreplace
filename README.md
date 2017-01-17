@@ -1,3 +1,43 @@
+# react router demo for this.props.router.push does not create history entry
+
+## Version
+3.0.1
+
+## Test Case
+I jump write a demo  
+https://github.com/new-xd/reactrouterpushreplace
+
+## Steps to reproduce
+- npm install
+- npm start
+- load url http://localhost:3000/#/entry/3 in browser
+
+## Expected Behavior
+when I press back button, it will go back to http://localhost:3000/#/page/3.  
+press back button twice, it will go back to http://localhost:3000/#/page/4.
+
+## Actual Behavior
+when I press back button, it will go back to blank url
+
+
+## code
+```js
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.routeParams.num != prevProps.routeParams.num) {
+            if (jump.get() > 0) {
+                    this.props.router.push('/page/' + (this.props.routeParams.num - 1))
+                // setTimeout(() => {
+                //     this.props.router.push('/page/' + (this.props.routeParams.num - 1))
+                // }, 1000)
+            }
+        }
+    }
+```
+if I change to use setTimeout, it works fine
+
+
+# Create React App Readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
